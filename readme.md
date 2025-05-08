@@ -11,20 +11,20 @@ This project also helped me practice clean GitHub collaboration, documenting iss
 
 ## Closed Issues
 
-1. Fix incorrect email or password message using OAuth2 login 
-(https://github.com/your-username/your-repo/issues/1)
+1. JWT login failure for locked or unverified users 
+https://github.com/sresway/events_manager/issues/2
 
 2. Ensure URL fields validate properly in User schemas 
-(https://github.com/your-username/your-repo/issues/2)
+(https://github.com/sresway/events_manager/issues/1)
 
-3. Prevent update when no fields provided (UserUpdate schema) 
-(https://github.com/your-username/your-repo/issues/3)
+3. Alembic migrations not running automatically in Docker
+https://github.com/sresway/events_manager/issues/3
 
-4. Instructor demo bug - `model_dump` usage on ORM models 
-(https://github.com/your-username/your-repo/issues/4)
+4.  Validate URLs for profile_picture, LinkedIn, and GitHub fields 
+https://github.com/sresway/events_manager/issues/4
 
 5. Enforce role-based access for admin/manager endpoints 
-(https://github.com/your-username/your-repo/issues/5)
+https://github.com/sresway/events_manager/issues/5
 
 All issues are resolved through PRs and merged into `main` following GitHub flow. Each includes:
 - A clear problem statement
