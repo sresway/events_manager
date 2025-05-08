@@ -24,15 +24,16 @@ def test_user_update_valid(user_update_data):
 
 # Tests for UserResponse
 def test_user_response_valid(user_response_data):
+    user_response_data["id"] = "6fa459ea-ee8a-3ca4-894e-db77e160355e"  # ensure valid UUID string
     user = UserResponse(**user_response_data)
-    assert user.id == user_response_data["id"]
-    # assert user.last_login_at == user_response_data["last_login_at"]
+    assert str(user.id) == user_response_data["id"]
 
 # Tests for LoginRequest
-def test_login_request_valid(login_request_data):
-    login = LoginRequest(**login_request_data)
-    assert login.email == login_request_data["email"]
-    assert login.password == login_request_data["password"]
+def test_login_request_valid():
+    data = {"email": "john.doe@example.com", "password": "SecurePassword123!"}
+    login = LoginRequest(**data)
+    assert login.email == data["email"]
+    assert login.password == data["password"]
 
 # Parametrized tests for nickname and email validation
 @pytest.mark.parametrize("nickname", ["test_user", "test-user", "testuser123", "123test"])

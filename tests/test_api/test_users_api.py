@@ -9,7 +9,7 @@ from app.services.jwt_service import decode_token  # Import your FastAPI app
 
 # Example of a test function using the async_client fixture
 @pytest.mark.asyncio
-async def test_create_user_access_denied(async_client, user_token, email_service):
+async def test_create_user_access_denied(async_client, user_token, email_service, mock_smtp):
     headers = {"Authorization": f"Bearer {user_token}"}
     # Define user data for the test
     user_data = {
