@@ -1,4 +1,4 @@
-# 🚀 FastAPI User Management System
+#  FastAPI User Management System
 
 This project implements a secure and robust REST API using FastAPI and PostgreSQL, designed for managing users with full CRUD operations, role-based access control (RBAC), and OAuth2 authentication.
 
@@ -9,13 +9,22 @@ One of the more challenging aspects was ensuring compatibility between Pydantic 
 This project also helped me practice clean GitHub collaboration, documenting issues, and using pull requests to break work into manageable pieces. Overall, I’m leaving this experience with sharper debugging, validation, and test coverage skills — and a better appreciation for structured API development.
 ---
 
-## 🛠️ Closed Issues
+## Closed Issues
 
-1. [#1: Fix incorrect email or password message using OAuth2 login](https://github.com/your-username/your-repo/issues/1)
-2. [#2: Ensure URL fields validate properly in User schemas](https://github.com/your-username/your-repo/issues/2)
-3. [#3: Prevent update when no fields provided (UserUpdate schema)](https://github.com/your-username/your-repo/issues/3)
-4. [#4: Instructor demo bug - `model_dump` usage on ORM models](https://github.com/your-username/your-repo/issues/4)
-5. [#5: Enforce role-based access for admin/manager endpoints](https://github.com/your-username/your-repo/issues/5)
+1. Fix incorrect email or password message using OAuth2 login 
+(https://github.com/your-username/your-repo/issues/1)
+
+2. Ensure URL fields validate properly in User schemas 
+(https://github.com/your-username/your-repo/issues/2)
+
+3. Prevent update when no fields provided (UserUpdate schema) 
+(https://github.com/your-username/your-repo/issues/3)
+
+4. Instructor demo bug - `model_dump` usage on ORM models 
+(https://github.com/your-username/your-repo/issues/4)
+
+5. Enforce role-based access for admin/manager endpoints 
+(https://github.com/your-username/your-repo/issues/5)
 
 All issues are resolved through PRs and merged into `main` following GitHub flow. Each includes:
 - A clear problem statement
@@ -25,10 +34,11 @@ All issues are resolved through PRs and merged into `main` following GitHub flow
 
 ---
 
-## 🐳 Docker Image
+## Docker Image
 
 Deployed on DockerHub:  
-👉 [https://hub.docker.com/r/your-username/your-image-name](https://hub.docker.com/r/your-username/your-image-name)
+  - https://hub.docker.com/repository/docker/sre25/event_manager/general
+
 
 To run locally:
 
