@@ -1,10 +1,7 @@
-# Use an official lightweight Python image.
-# 3.12-slim variant is chosen for a balance between size and utility.
-FROM python:3.12-slim-bullseye as base
+# Use a stable and lightweight Python image.
+FROM python:3.11-slim as base
 
-# Set environment variables to configure Python and pip.
-# Prevents Python from buffering stdout and stderr, enables the fault handler, disables pip cache,
-# sets default pip timeout, and suppresses pip version check messages.
+# Set environment variables to configure Python and pip behavior.
 ENV PYTHONUNBUFFERED=1 \
     PYTHONFAULTHANDLER=1 \
     PIP_NO_CACHE_DIR=true \
@@ -15,16 +12,16 @@ ENV PYTHONUNBUFFERED=1 \
 # Set the working directory inside the container
 WORKDIR /myapp
 
-# Install system dependencies
+# Install system dependencies required for Python and PostgreSQL
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc libpq-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy only the requirements, to cache them in Docker layer
+# Copy only the requirements file to leverage Docker caching
 COPY ./requirements.txt /myapp/requirements.txt
 
-# Upgrade pip and install Python dependencies from requirements file
+# Upgrade pip and install dependencies
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
@@ -32,11 +29,8 @@ RUN pip install --upgrade pip \
 RUN useradd -m myuser
 USER myuser
 
-# Copy the rest of your application's code with appropriate ownership
+# Copy application source code into the container
 COPY --chown=myuser:myuser . /myapp
 
-# Inform Docker that the container listens on the specified port at runtime.
+# Expose the FastAPI port
 EXPOSE 8000
-
-# Use ENTRYPOINT to specify the executable when the container starts.
-ENTRYPOINT ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
