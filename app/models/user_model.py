@@ -31,6 +31,7 @@ class User(Base):
         last_name (str): Optional first name of the user.
 
         bio (str): Optional biographical information.
+        preferred_language: Mapped[str] = Column(String(50), nullable=True)
         profile_picture_url (str): Optional URL to a profile picture.
         linkedin_profile_url (str): Optional LinkedIn profile URL.
         github_profile_url (str): Optional GitHub profile URL.
@@ -59,6 +60,7 @@ class User(Base):
     first_name: Mapped[str] = Column(String(100), nullable=True)
     last_name: Mapped[str] = Column(String(100), nullable=True)
     bio: Mapped[str] = Column(String(500), nullable=True)
+    preferred_language: Mapped[str] = Column(String(50), nullable=True)
     profile_picture_url: Mapped[str] = Column(String(255), nullable=True)
     linkedin_profile_url: Mapped[str] = Column(String(255), nullable=True)
     github_profile_url: Mapped[str] = Column(String(255), nullable=True)
