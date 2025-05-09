@@ -5,6 +5,7 @@ import smtplib
 from unittest.mock import patch
 
 import pytest
+from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 from httpx import AsyncClient
 from urllib.parse import urlencode
@@ -21,6 +22,8 @@ from app.utils.template_manager import TemplateManager
 from app.services.email_service import EmailService
 from app.services.jwt_service import create_access_token
 from app.services.user_service import UserService
+
+load_dotenv(".env.test") or load_dotenv()
 
 fake = Faker()
 
