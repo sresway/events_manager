@@ -1,20 +1,18 @@
 import markdown2
 from pathlib import Path
+from bs4 import BeautifulSoup  # Ensure this is installed via `pip install beautifulsoup4`
 
 class TemplateManager:
     def __init__(self):
-        # Dynamically determine the root path of the project
-        self.root_dir = Path(__file__).resolve().parent.parent.parent  # Adjust this depending on the structure
+        self.root_dir = Path(__file__).resolve().parent.parent.parent
         self.templates_dir = self.root_dir / 'email_templates'
 
     def _read_template(self, filename: str) -> str:
-        """Private method to read template content."""
         template_path = self.templates_dir / filename
         with open(template_path, 'r', encoding='utf-8') as file:
             return file.read()
 
     def _apply_email_styles(self, html: str) -> str:
-        """Apply advanced CSS styles inline for email compatibility with excellent typography."""
         styles = {
             'body': 'font-family: Arial, sans-serif; font-size: 16px; color: #333333; background-color: #ffffff; line-height: 1.5;',
             'h1': 'font-size: 24px; color: #333333; font-weight: bold; margin-top: 20px; margin-bottom: 10px;',
@@ -24,20 +22,23 @@ class TemplateManager:
             'ul': 'list-style-type: none; padding: 0;',
             'li': 'margin-bottom: 10px;'
         }
-        # Wrap entire HTML content in <div> with body style
-        styled_html = f'<div style="{styles["body"]}">{html}</div>'
-        # Apply styles to each HTML element
-        for tag, style in styles.items():
-            if tag != 'body':  # Skip the body style since it's already applied to the <div>
-                styled_html = styled_html.replace(f'<{tag}>', f'<{tag} style="{style}">')
-        return styled_html
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        # Apply styles to each matching tag
+        for tag_name, style in styles.items():
+            for tag in soup.find_all(tag_name):
+                existing_style = tag.get("style", "")
+                tag["style"] = f"{existing_style} {style}".strip()
+
+        # Wrap everything in a styled <div>
+        wrapper = soup.new_tag("div", style=styles["body"])
+        wrapper.append(soup)
+        return str(wrapper)
 
     def render_template(self, template_name: str, **context) -> str:
-        """Render a markdown template with given context, applying advanced email styles."""
         header = self._read_template('header.md')
         footer = self._read_template('footer.md')
-
-        # Read main template and format it with provided context
         main_template = self._read_template(f'{template_name}.md')
         main_content = main_template.format(**context)
 
