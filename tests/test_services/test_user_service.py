@@ -155,3 +155,26 @@ async def test_unlock_user_account(db_session, locked_user):
     assert unlocked, "The account should be unlocked"
     refreshed_user = await UserService.get_by_id(db_session, locked_user.id)
     assert not refreshed_user.is_locked, "The user should no longer be locked"
+
+# tests to upgrade professions
+@pytest.mark.asyncio
+async def test_upgrade_to_professional_success(db_session, user):
+    upgraded = await UserService.upgrade_to_professional(db_session, user.id, "MANAGER")
+    assert upgraded is not None
+    assert upgraded.is_professional is True
+    assert upgraded.professional_status_updated_at is not None
+
+@pytest.mark.asyncio
+async def test_upgrade_to_professional_insufficient_role(db_session, user):
+    upgraded = await UserService.upgrade_to_professional(db_session, user.id, "AUTHENTICATED")
+    assert upgraded is False
+    refreshed_user = await UserService.get_by_id(db_session, user.id)
+    assert refreshed_user.is_professional is False
+
+@pytest.mark.asyncio
+async def test_upgrade_to_professional_user_not_found(db_session):
+    upgraded = await UserService.upgrade_to_professional(
+        db_session, "00000000-0000-0000-0000-000000000000", "ADMIN"
+    )
+    assert upgraded is False
+

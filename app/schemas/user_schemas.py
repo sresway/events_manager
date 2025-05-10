@@ -64,11 +64,9 @@ class UserResponse(UserBase):
     is_professional: Optional[bool] = Field(default=False, example=True)
     preferred_language: Optional[str] = Field(None, example="English")
 
-
 class LoginRequest(BaseModel):
     email: str = Field(..., example="john.doe@example.com")
     password: str = Field(..., example="Secure*1234")
-
 
 class ErrorResponse(BaseModel):
     error: str = Field(..., example="Not Found")
@@ -85,3 +83,7 @@ class UserListResponse(BaseModel):
     total: int = Field(..., example=100)
     page: int = Field(..., example=1)
     size: int = Field(..., example=10)
+
+# NEW: Schema for updating professional status
+class ProfessionalStatusUpdate(BaseModel):
+    is_professional: bool = Field(..., example=True)

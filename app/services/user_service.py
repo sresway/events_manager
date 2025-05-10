@@ -184,3 +184,33 @@ class UserService:
             logger.info(f"Account unlocked for user: {user_id}")
             return True
         return False
+
+    @classmethod
+    async def update_professional_status(cls, session: AsyncSession, user_id: UUID, status: bool) -> Optional[User]:
+        user = await cls.get_by_id(session, user_id)
+        if user:
+            user.update_professional_status(status)
+            session.add(user)
+            await session.commit()
+            logger.info(f"Updated professional status for user {user_id} to {status}.")
+            return user
+        logger.warning(f"User not found for professional status update: {user_id}")
+        return None
+
+    @classmethod
+    async def upgrade_to_professional(cls, session: AsyncSession, user_id: UUID, role: str) -> bool:
+        if role not in ["MANAGER", "ADMIN"]:
+            logger.warning(f"Unauthorized role '{role}' attempted professional upgrade.")
+            return False
+
+        user = await cls.get_by_id(session, user_id)
+        if not user:
+            logger.warning(f"User with ID {user_id} not found for professional upgrade.")
+            return False
+
+        user.update_professional_status(True)
+        session.add(user)
+        await session.commit()
+        await session.refresh(user)
+        logger.info(f"User {user_id} upgraded to professional by {role}")
+        return user
