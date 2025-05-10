@@ -39,14 +39,11 @@ We added a secure endpoint that allows **Admins and Managers** to upgrade any us
 
 | Issue | Description |
 |-------|-------------|
-| [#1](https://github.com/sresway/events_manager/issues/1) | Schema URL field validation |
-| [#2](https://github.com/sresway/events_manager/issues/2) | JWT login fails for locked or unverified users |
-| [#3](https://github.com/sresway/events_manager/issues/3) | Alembic migrations not running in Docker |
-| [#4](https://github.com/sresway/events_manager/issues/4) | Profile, LinkedIn, GitHub URL validation in schema |
-| [#5](https://github.com/sresway/events_manager/issues/5) | Role-based access control (RBAC) on user endpoints |
-| [#6](https://github.com/sresway/events_manager/issues/6) | Add `upgrade_to_professional()` route and service |
-| [#7](https://github.com/sresway/events_manager/issues/7) | Fix Pydantic model validation errors in upgrade route |
-| [#8](https://github.com/sresway/events_manager/issues/8) | Add missing tests for professional upgrade scenarios |
+| [#1] https://github.com/sresway/final_project/issues/3 | Schema URL field validation |
+| [#2] https://github.com/sresway/final_project/issues/1 | JWT login fails for locked or unverified users |
+| [#3] https://github.com/sresway/final_project/issues/2 | Alembic migrations not running in Docker |
+| [#4] https://github.com/sresway/final_project/issues/5 | Role-based access control (RBAC) on user endpoints |
+| [#5] https://github.com/sresway/final_project/issues/4 | Add missing tests for professional upgrade scenarios |
 
 Each issue was resolved through a pull request with:
 - A descriptive summary
@@ -57,10 +54,10 @@ Each issue was resolved through a pull request with:
 
 ## 🧪 Coverage
 
-- ✅ 100% coverage on models and schemas
+- ✅ 90% coverage on models and schemas
 - ✅ Over 30 tests written with `pytest-asyncio`
 - ✅ All services tested including login, registration, RBAC, and professional upgrades
-- ✅ Final test run: **98 passed, 1 skipped, 0 failed**
+- ✅ Final test run: **99 passed, 0 failed**
 
 ---
 
