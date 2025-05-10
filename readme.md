@@ -64,7 +64,7 @@ Each issue was resolved through a pull request with:
 ## 📦 Docker Deployment
 
 **DockerHub Repo:**  
-[https://hub.docker.com/repository/docker/sre25/event_manager/general](https://hub.docker.com/repository/docker/sre25/event_manager/general)
+https://hub.docker.com/repository/docker/sre25/final_project/general
 
 **Run locally:**
 
